@@ -45,9 +45,9 @@ h1 {
   gap: 10px;
 }
 
-.image-section {
+main section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
@@ -63,6 +63,3 @@ footer p {
   width: 100%;
 }
 
-#buttons ul li {
-line-height: 1.5;
-}
