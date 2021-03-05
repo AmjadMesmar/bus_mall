@@ -1,29 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>cart page</title>
+  <title>Bus Mall Store</title>
+  <link rel="stylesheet" href="Styles/reset.css" />
+  <link rel="stylesheet" href="Styles/style.css" />
 </head>
+
 <body>
-    <section class="container">
-    <header>
-        <img src="https://placehold.it/100x100/ddd?text=logo" alt="" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="">Contact</a>
-            <a href="">About</a>
-        </nav>
-    </header>
 
-    <main>
-        <h1>BUS MALL</h1>
-    </main>
+  <header>
+    <h1>Bus Mall Store</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart</a><span id="itemCount"></span></li>
+      </ul>
+    </nav>
+  </header>
 
-    <footer>&copy; 2020 BUS MALL </footer>
-</section>
-<script src="js/app.js"></script>
-<script src="js/cart.js"></script> 
+  <main>
+
+    <section class="deck col-1">
+      <div class="card">
+        <header>
+          <h1>Your Cart</h1>
+        </header>
+        <div class="copy">
+          <ol>
+            <li>Click the "X" next to any item to remove it from your cart</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="deck col-1">
+      <div id="cart-container" class="card">
+        <table id="cart">
+          <thead>
+            <tr>
+              <th>Remove</th>
+              <th>Quantity</th>
+              <th>Item</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy;2021 ASAC 201d17</p>
+  </footer>
+
+  <script src='js/app.js'></script>
+  <script src='js/cart.js'></script>
 </body>
+
 </html>
