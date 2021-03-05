@@ -1,76 +1,65 @@
 'use strict';
 
-let busProducts = [
+// Cart constructor.
+const Cart = function(items) {
+  // this.items is an array of CartItem instances.
+  this.items = items;
+};
 
-  'bag.jpg',
-  'banana.jpg',
-  'bathroom.jpg',
-  'boots.jpg',
-  'breakfast.jpg',
-  'bubblegum.jpg',
-  'chair.jpg',
-  'cthulhu.jpg',
-  'dog-duck.jpg',
-  'dragon.jpg',
-  'pen.jpg',
-  'pet-sweep.jpg',
-  'scissors.jpg',
-  'shark.jpg',
-  'sweep.png',
-  'tauntaun.jpg',
-  'unicorn.jpg',
-  'usb.gif',
-  'water-can.jpg',
-  'wine-glass.jpg'
-];
+Cart.prototype.addItem = function(product, quantity) {
+  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  const newItem = new CartItem(product,quantity);
+  this.items.push(newItem);
+};
 
-let index;
+Cart.prototype.saveToLocalStorage = function() {
+  // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(this.items));
+};
 
-function Bus(name) {
+Cart.prototype.removeItem = function(item) {
+  // TODO: Fill in this instance method to remove one item from the cart.
+  // Note: You will have to decide what kind of parameter to pass in here!
+
+  this.items.splice(item, 1);
+
+};
+
+const CartItem = function(product, quantity) {
+  this.product = product;
+  this.quantity = quantity;
+};
+
+// Product contructor.
+const Product = function(filePath, name) {
+  this.filePath = filePath;
   this.name = name;
-  this.num = 0;
-  this.image = `./Images/${name}`;
-  Bus.all.push(this);
+  Product.allProducts.push(this);
+};
+Product.allProducts = [];
+
+function generateCatalog() {
+  new Product('Images/bag.jpg', 'Bag');
+  new Product('Images/banana.jpg', 'Banana');
+  new Product('Images/bathroom.jpg', 'Bathroom');
+  new Product('Images/boots.jpg', 'Boots');
+  new Product('Images/breakfast.jpg', 'Breakfast');
+  new Product('Images/bubblegum.jpg', 'Bubblegum');
+  new Product('Images/chair.jpg', 'Chair');
+  new Product('Images/cthulhu.jpg', 'Cthulhu');
+  new Product('Images/dog-duck.jpg', 'Dog-Duck');
+  new Product('Images/dragon.jpg', 'Dragon');
+  new Product('Images/pen.jpg', 'Pen');
+  new Product('Images/pet-sweep.jpg', 'Pet Sweep');
+  new Product('Images/scissors.jpg', 'Scissors');
+  new Product('Images/shark.jpg', 'Shark');
+  new Product('Images/sweep.png', 'Sweep');
+  new Product('Images/tauntaun.jpg', 'Taun-Taun');
+  new Product('Images/unicorn.jpg', 'Unicorn');
+  new Product('Images/usb.gif', 'USB');
+  new Product('Images/water-can.jpg', 'Water Can');
+  new Product('Images/wine-glass.jpg', 'Wine Glass');
 }
 
-Bus.all = [];
-
-// for (let i = 0; i < busProducts.length; i++) {
-//   new Bus(getName(busProducts[i]), busProducts[i]);
-// }
-
-// Bus.prototype.getName = function(fileName) {
-//   return fileName.split('.').slice(0, -1).join('.');
-//   /*
-//  return fileName.split('.')[0];
-//  return fileName.split('.')[1];
-//   */
-// }
-
-const ul = document.getElementById('list');
-
-Bus.prototype.renderProduct = function(){
-    const liElement = document.createElement('li');
-    ul.appendChild(liElement);
-    liElement.textContent = ` number of ${this.name} : ${this.num}`;
-    const img = document.createElement('img');
-    liElement.appendChild(img);
-    // this.getName(this.name);
-    img.src = this.image;
-    
-};
-
-const formElement = document.getElementById('productForm');
-formElement.addEventListener('submit',handelSubmit);
-function handelSubmit(event) {
-event.preventDefault();
-const product = new Bus (event.target.products.value);
-const number = event.target.numField.value;
-product.num = number;
-  formElement.reset();
-  product.renderProduct();
-  localStorage.product = JSON.stringify(Bus.all);
-};
-
-
-
+// Initialize the app by creating the big list of products with images and names
+generateCatalog();
